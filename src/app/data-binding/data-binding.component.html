@@ -1,0 +1,25 @@
+<!-- Interpolation -->
+<p>{{title}}</p>
+
+<!-- property binding -->
+ <img [src]="imgUrl" alt="">
+
+<!-- style binding -->
+ <p [style.color]="changeColor ? 'red' : 'blue'">Style binding</p>
+
+ <!-- class binding -->
+  <p [class.changeColor]="applyClass">Class binding</p>
+
+  <!-- event binding -->
+   <input type="text" (keyup)="eventBinding($event)">
+
+   <!-- event filtering -->
+<input type="text" (keyup.enter)="eventFiltering($event)">
+
+<!-- two way data binding -->
+ <br><br>
+ <input type="text" [(ngModel)]="username">
+ <p>{{username}}</p>
+
+ <!-- template reference -->
+ <input type="text" (keyup.enter)="templateRef(userName)" #userName>

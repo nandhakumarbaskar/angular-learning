@@ -1,0 +1,20 @@
+<div class="form-area">
+    <input type="text" [(ngModel)]="title">
+    <br><br>
+    <textarea [(ngModel)]="description"></textarea>
+    <br><br>
+    <input type="text" [(ngModel)]="imgUrl">
+    
+    <br><br>
+    <input type="text" [(ngModel)]="siteUrl">
+    <br><br>
+    <input type="checkbox" [(ngModel)]="addBackground">
+</div>
+<div class="preview-area">
+    <p [class.changeCss]="addBackground">{{title}}</p>
+    <p>{{description}}</p>
+    <p>
+        <img [src]="imgUrl"  alt="">
+    </p>
+    <p><a [href]="siteUrl" [style.display]="siteUrl ? 'block' : 'none'" target="_blank">read more...</a></p>
+</div>

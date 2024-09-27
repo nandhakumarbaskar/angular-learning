@@ -1,0 +1,32 @@
+<div class="form-area">
+    <input type="text" placeholder="name" [(ngModel)]="name">
+    <br><br>
+    <input type="text" placeholder="email" [(ngModel)]="email">
+    <br><br>
+    <textarea placeholder="Address" [(ngModel)]="address"></textarea>
+    <br><br>
+    <button (click)="saveData()">Save data</button>
+</div>
+<!-- {{userDetails | json}} -->
+<div class="preview-area" *ngIf="userDetails.length > 0 else nodata">
+    <table>
+        <thead>
+            <th>#</th>
+            <th>name</th>
+            <th>email</th>
+            <th>address</th>
+            <th>action</th>
+        </thead>
+        <tr *ngFor="let u of userDetails; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.address}}</td>
+            <td><button (click)="removeItem(i)">Remove</button></td>
+        </tr>
+    </table>
+</div>
+<ng-template #nodata>
+    <div>No data</div>
+    
+</ng-template>

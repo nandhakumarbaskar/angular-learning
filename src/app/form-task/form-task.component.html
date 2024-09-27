@@ -1,0 +1,59 @@
+<h3>{{form1}}</h3>
+<div class="form-area">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <input type="text" placeholder="fullName" name="fullName" ngModel #fullName="ngModel" (change)="onChange(fullName)" required minlength="5">
+        <div *ngIf="fullName.touched && fullName.invalid">
+            <div *ngIf="fullName.errors?.['required']">required</div>
+            <div *ngIf="fullName.errors?.['minlength']">minlength</div>
+        </div>
+        <br><br>
+        <input type="text" placeholder="email" name="email" ngModel #email="ngModel" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+        <div *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.errors?.['required']"> required</div>
+            <div *ngIf="email.errors?.['pattern']"> pattern</div>
+        </div>
+        <br><br>
+        <textarea placeholder="address" name="address" ngModel #address="ngModel" required></textarea>
+        <div *ngIf="address.touched && email.invalid"> required</div>
+        <br><br>
+        <button type="submit" [disabled]="f.invalid">Submit</button>
+    </form>
+</div>
+
+<h3>{{form2}}</h3>
+<div class="form-area">
+    <form [formGroup]="form" (ngSubmit)="onReactiveSubmit()">
+        <input type="text" placeholder="fullName" formControlName="fullName">
+        <div *ngIf="FullName.touched && FullName.invalid">
+            <div *ngIf="FullName.errors?.['required']">required</div>
+            <div *ngIf="FullName.errors?.['minlength']">minlength</div>
+        </div>
+        <br><br>
+        <input type="text" placeholder="email" formControlName="email">
+        <div *ngIf="Email.touched && Email.invalid">
+            <div *ngIf="Email.errors?.['required']"> required</div>
+            <div *ngIf="Email.errors?.['pattern']"> pattern</div>
+        </div>
+        <br><br>
+        <div formGroupName="contactDetails">
+            <textarea placeholder="address" formControlName="address"></textarea>
+        <div *ngIf="Address.touched && Address.invalid"> required</div>
+        <br><br>
+        <textarea placeholder="address" formControlName="shippingAddress"></textarea>
+        <div *ngIf="shippingAddress.touched && shippingAddress.invalid"> required</div>
+        <br><br>
+        <input type="text" placeholder="contactNo" formControlName="contactNo">
+        <div *ngIf="contactNo.touched && contactNo.invalid">
+            <div *ngIf="contactNo.errors?.['required']">required</div>
+            <div *ngIf="contactNo.errors?.['pattern']">pattern</div>
+        </div>
+        <br><br>
+        </div>
+        <input type="text" placeholder="skills" formControlName="skills" #skill (keyup.enter)="addSkills(skill)">
+        <ul><li *ngFor="let s of Skills.controls; let i = index">
+            {{s.value}}
+        </li></ul>
+        <br><br>
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
